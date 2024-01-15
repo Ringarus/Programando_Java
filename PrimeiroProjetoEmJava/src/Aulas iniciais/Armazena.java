@@ -9,7 +9,7 @@ public class Armazena {
         String nome = "Jhon";
         int idade = 22;
         double altura = 1.72;
-        System.out.printf("Oi, meu nome é %s, tenho %d anos e %fm de altura\n", nome, idade, altura);
+        System.out.printf("Oi, meu nome é %s, tenho %d anos e %.2f de altura\n", nome, idade, altura);
 
     }
 }
