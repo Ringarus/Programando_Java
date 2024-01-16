@@ -1,7 +1,7 @@
 public class TiposAndOperadores {
     
     public static void main(String[] args) {
-        
+    /*  
         //Em Java temos tipos primitivos
         byte oitob = 12; //8 bits
         short dezeb = 30000; //16 bits
@@ -40,7 +40,7 @@ public class TiposAndOperadores {
         boolean e = c && d;  // AND lógico
         boolean f = c || d;  // OR lógico
         boolean g = !c;      // NOT lógico
-
+    */ 
 
 
 
