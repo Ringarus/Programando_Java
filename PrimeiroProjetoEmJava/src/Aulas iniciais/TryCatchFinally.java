@@ -11,7 +11,9 @@ public class TryCatchFinally {
         try {
             // Bloco de código que pode gerar uma exceção]
             // Aqui deve ser criado um ZeroDivisionError
-            int resultado = 10 / 0;
+            int resultado = 0;
+            int doidera = 1;
+            resultado = doidera / resultado;
         } catch (ArithmeticException e) {
             // Trata a exceção
             System.out.println("Erro aritmético: " + e.getMessage());
