@@ -8,7 +8,7 @@ public class LeituraDeDados_IO {
         Scanner s = new Scanner(System.in);
         System.err.println("Qual é o meu nome?");
         String answer = s.nextLine();
-        System.out.println("Isso aí, eu sou o "+ answer);
+        System.out.println("Isso aí, eu sou "+ answer);
         s.close();
     }
 }
