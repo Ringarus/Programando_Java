@@ -9,5 +9,6 @@ public class LeituraDeDados_IO {
         System.err.println("Qual é o meu nome?");
         String answer = s.nextLine();
         System.out.println("Isso aí, eu sou o "+ answer);
+        s.close();
     }
 }
