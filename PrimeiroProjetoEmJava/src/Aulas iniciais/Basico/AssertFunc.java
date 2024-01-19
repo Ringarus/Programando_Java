@@ -1,3 +1,4 @@
+package Basico;
 public class AssertFunc {
     // assert serve para verificar uma condição e lançar uma exceção caso seja falsa
     // útil pra depuração mas não aparece no terminal a menos que -ea esteja habilitado

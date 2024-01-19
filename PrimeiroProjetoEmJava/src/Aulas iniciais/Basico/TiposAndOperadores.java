@@ -1,3 +1,4 @@
+package Basico;
 public class TiposAndOperadores {
     
     public static void main(String[] args) {

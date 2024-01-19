@@ -1,3 +1,4 @@
+package Basico;
 public class EstruturasDeDados {
     /*
      * For each
