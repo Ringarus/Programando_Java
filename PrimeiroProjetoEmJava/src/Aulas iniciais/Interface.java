@@ -1,6 +1,6 @@
 import javax.swing.JOptionPane;
 
-public class InputComInterface {
+public class Interface {
 
 
     public static void main(String[] args) {
@@ -9,7 +9,7 @@ public class InputComInterface {
       int idade = Integer.parseInt(JOptionPane.showInputDialog("Insira sua idade"));
       JOptionPane.showMessageDialog(null, "Você tem "+idade+" anos.");
       double altura = Double.parseDouble(JOptionPane.showInputDialog("Insira sua altura"));
-      JOptionPane.showMessageDialog(null, "Você tem "+altura+" m de altura.");
+      JOptionPane.showMessageDialog(null, "Você tem "+altura+" cm de altura.");
     }
     
 }
