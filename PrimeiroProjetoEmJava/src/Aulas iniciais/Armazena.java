@@ -1,4 +1,4 @@
-package Basico;
+
 import java.util.Scanner;
 
 public class Armazena {

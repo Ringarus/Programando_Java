@@ -1,4 +1,4 @@
-package Basico;
+
 public class EstruturasDeLoop {
     /*
      * Agora irei treinar estruturas de loop como While, For e o Switch

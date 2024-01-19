@@ -1,4 +1,4 @@
-package Basico;
+
 public class Throw {
     
 
