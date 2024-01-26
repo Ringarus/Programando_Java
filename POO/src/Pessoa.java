@@ -1,12 +1,11 @@
 //Herança totaL -> ABSTRACT
 public abstract class Pessoa {
+    
     //private final Integer idade; -> impede que seja duplicado
     private Integer idade;
     private String nome;
     private String endereço;
     private Double altura;
-
-
 
     //CONSTRUTOR -> inicializar objeto
     public Pessoa(int idade, String nome, String endereço, double altura) {

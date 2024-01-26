@@ -1,3 +1,4 @@
+/*
 import java.util.ArrayList;
 import java.util.List;
 
@@ -7,8 +8,9 @@ public class General {
         Alunos aluno = new Alunos();
         aluno.setIdade(18);
         System.out.println(aluno.getIdade());
-        List list = new ArrayList<>();
+        //List list = new ArrayList<>();
     }
 
 
 }
+ */
