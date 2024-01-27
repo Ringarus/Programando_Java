@@ -1,3 +1,4 @@
+package Banco_Digital;
 //Definindo imports
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -175,7 +176,6 @@ public class Banking {
                     //Fechando scanner
                     scan.close();
                     String novaLinha = String.join(",", temp);
-                    System.out.println(novaLinha);
                     // Modificar a linha conforme necessário
                     String linhaModificada = preencherEspacos(novaLinha, 99);
                     arquivo.seek(posicaoInicioLinha);
