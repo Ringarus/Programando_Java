@@ -2,9 +2,10 @@ import java.io.IOException;
 
 public class Console {
     public static void main(String[] args) throws IOException {
-        
-        ManipuladorArquivo console = new ManipuladorArquivo("banco.txt");
-        console.alterarArquivo(null);
+        //0 -> alterar dados
+        //1 -> saque, deposito e transferencia
+        Banking console = new Banking("banco.txt");
+        console.alterarArquivo("12345678912", 1, null);
         String ler = console.lerArquivo();
         System.out.println(ler);
     }
