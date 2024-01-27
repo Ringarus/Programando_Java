@@ -6,7 +6,5 @@ public class Console {
         //1 -> saque, deposito e transferencia
         Banking console = new Banking("banco.txt");
         console.alterarArquivo("12345678912", 1, null);
-        String ler = console.lerArquivo();
-        System.out.println(ler);
     }
 }
