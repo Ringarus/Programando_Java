@@ -1,0 +1,33 @@
+--------------------------------------------------------------------------------
+Nome do projeto: Porteiro de prédio
+
+Idealizador/Cliente: Vitor
+
+Tipo de projeto (Individual/ Em grupo): 
+
+Grau de dificuldade: Fácil/Médio
+
+Colaboradores:
+
+Data de início (DD/MM/AA): 18/01/24
+
+Prazo de entrega previsto (DD/MM/AA):  1 semana padrão.
+--------------------------------------------------------------------------------
+
+Descrição: Você é um porteiro de prédio e ao invés de um livro contábil onde você tem todos os moradores do prédio, informações de contato (número de celular e email), andar e númeração de apartamento você decidiu automatizar e digitalizar todo o processo de visualização e pesquisa dos moradores do prédio em que você desenvolverá um programa que permite adicionar novos moradores á apartamentos que estão desocupados, editar os moradores de um apartamento cujo os antigos moradores estejam de mudança, ou simplesmente esvazia-los. Junto com diversas outras formas visualização e ordenação dos moraderes e dos apartamentos do prédio.
+[20:07]
+Funcionalidades: 
+Editar os moradores de um dos apartamentos, seja esvaziando ou adicinando novos moradores.
+Os apartamentos devem ser pesquisados pelo número do apartamento e andar, ou pelo nome do proprietário do apartamento.
+Deve ser possível mostrar todos os apartamentos pelo andar pesquisado.
+Deve ser possível ordenar os apartamentos que não possuírem moradores, se houver, e os que possuírem moradores.
+Deve ser possível ordenar todos os apartamentos em ordem por andar e pelo número dos apartamentos, que junto a deles deve aparecer o nome do proprietário.
+Em cada ordenação deve ser possível escolher um dentre os que aparecem para aparecer todas as informações dos moradores e do apartamento.
+
+Detalhes extras: 
+Gravar todos os eventos concluidos algum tipo de arquivo (ex: txt, csv, xsl)(leitura e escrita em arquivos).
+Deve ser possível ir e voltar de todas as opções podendo percorrer e realmente utilizar o programa de forma prática.
+As orndeções não tem um método específico, qualquer um que cumpra o que for pedido é válido.
+O padrão é 5 apartamentos por andar, e o número de cada apartamento deve seguir o padrão: 101(1º Andar), 102(1º Andar), 201(2º Andar),  404 (4º Andar), etc.
+
+--------------------------------------------------------------------------------
