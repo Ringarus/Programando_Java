@@ -94,7 +94,7 @@ public class Admer {
     }
 
     static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores, String Tel) {
-        if(VerificarDuplicataApartamento(Andar, Apartamento){
+        if(VerificarDuplicataApartamento(Andar, Apartamento)){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
                 String linha;
                 linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+","+Tel+"null";
@@ -223,6 +223,7 @@ public class Admer {
                 } 
             }
             ler.close();
+            ledor.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
