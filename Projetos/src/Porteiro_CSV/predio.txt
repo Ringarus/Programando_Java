@@ -5,10 +5,5 @@ Andar,Apartamento,Ocupado,Proprietario,Moradores,TelContato,Email
 2,201,true,Vitor,Vitor/Namorada do Vitor,21999999999,gigantedacolina1@gmail.com
 3,301,false,Vitor,null,null,null
 4,401,false,Vitor,null,null,null
-1,101,true,Mathias,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
-1,101,true,Mathias,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
-1,101,true,Mathias,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
-1,101,true,Mathias,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
-1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
-1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com
+1,101,true,null,Jefferson/Mae dele,999,jeffinbotafogo@gmail.com
 1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com

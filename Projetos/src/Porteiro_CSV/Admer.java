@@ -10,13 +10,6 @@ public class Admer {
     //static ArrayList<String[]> tabelaOriginal = gerarTabelinha();
     //static ArrayList<String[]> tabelaAtual = new ArrayList<>(tabelaOriginal);
 
-    public static void main(String[] args) {
-        adicionar();
-        exibirTabelaFormatada();
-    }
-
-    
-
     public static void exibirTabelaFormatada() {
         ArrayList<String[]> tabelaExibir = gerarTabelinha();
         System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
@@ -52,7 +45,7 @@ public class Admer {
         return listaFinal;
     }
 
-    private void alterador(int coluna, String valorOriginal, String alteracao) {
+    static void alterador(int coluna, String valorOriginal, String alteracao) {
         
         ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelinha());
 
@@ -93,13 +86,68 @@ public class Admer {
             e.printStackTrace();
         }
     }
+    
+    static void remover(int fullOrParcial, int coluna, String remocao, String parametro) {
+        //1 -> Remover o registro inteiro
+        //2 -> Remover apenas o conteúdo da coluna
+        //3 -> Remover a linha se o parâmetro fornecido for encontrado em qualquer coluna
+        //4 -> Remover a coluna se o parâmetro fornecido for encontrado em qualquer coluna
+        ArrayList<String[]> tabelaAtual = gerarTabelinha();
 
-    static void remover(int fullOrParcial, int coluna, String remocao) {
-        
-        try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
-            String linha = "1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com";
-            buffEscritor.write(linha);
-            buffEscritor.newLine();
+        try {
+            // Escrever o Novo Conteúdo no Arquivo Temporário
+            File arquivoTemporario = new File("temporario.txt");
+            FileWriter escritor = new FileWriter(arquivoTemporario);
+            BufferedWriter buffEscritor = new BufferedWriter(escritor);
+
+            for (String[] linhas : tabelaAtual) {
+                // Verifica se o conteúdo da coluna é igual ao que desejamos remover
+                if (linhas[coluna].equals(remocao)) {
+                    if (fullOrParcial == 1) {
+                        // Remover o registro inteiro
+                        continue; // Pula para a próxima iteração sem escrever a linha
+                    } else if (fullOrParcial == 2) {
+                        // Remover apenas o conteúdo da coluna
+                        linhas[coluna] = "null"; // ou null, dependendo da necessidade
+                    } else if (fullOrParcial == 3) {
+                        // Remover a linha se o parâmetro fornecido for encontrado em qualquer coluna
+                        boolean parametroEncontrado = false;
+                        for (String valorColuna : linhas) {
+                            if (valorColuna.equals(parametro)) {
+                                parametroEncontrado = true;
+                                break; // Parar a busca se encontrar o parâmetro em qualquer coluna
+                            }
+                        }
+                        if (parametroEncontrado) {
+                            continue; // Pula para a próxima iteração sem escrever a linha
+                        }
+                    } else if (fullOrParcial == 4) {
+                        // Remover a coluna se o parâmetro fornecido for encontrado em qualquer coluna
+                        boolean parametroEncontrado = false;
+                        for (String valorColuna : linhas) {
+                            if (valorColuna.equals(parametro)) {
+                                parametroEncontrado = true;
+                                break; // Parar a busca se encontrar o parâmetro em qualquer coluna
+                            }
+                        }
+                        if (parametroEncontrado) {
+                            linhas[coluna] = "null"; // ou null, dependendo da necessidade
+                        }
+                    }
+                    
+                    
+                }
+
+                // Escrever a linha no arquivo temporário
+                buffEscritor.write(String.join(",", linhas));
+                buffEscritor.newLine();
+            }
+
+            buffEscritor.close();
+
+            // Substituir o Arquivo Original pelo Novo Arquivo Temporário
+            Files.move(arquivoTemporario.toPath(), Paths.get(arquivo), StandardCopyOption.REPLACE_EXISTING);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
