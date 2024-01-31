@@ -7,29 +7,31 @@ import java.util.ArrayList;
 
 public class Admer {
     final static String arquivo = "C:\\Users\\Valério\\Documents\\Java_Project\\Programando_Java\\Projetos\\src\\Porteiro_CSV\\predio.txt";
-    static ArrayList<String[]> tabelaOriginal = gerarTabelinha();
-    static ArrayList<String[]> tabelaAtual = new ArrayList<>(tabelaOriginal);
+    //static ArrayList<String[]> tabelaOriginal = gerarTabelinha();
+    //static ArrayList<String[]> tabelaAtual = new ArrayList<>(tabelaOriginal);
 
     public static void main(String[] args) {
-        exibirTabelaFormatada();
         adicionar();
         exibirTabelaFormatada();
     }
 
+    
+
     public static void exibirTabelaFormatada() {
-        System.out.println("| Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
-        System.out.println("|--------|-------------|---------|---------------|---------------------------|------------------|--------------------------------|");
+        ArrayList<String[]> tabelaExibir = gerarTabelinha();
+        System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
+        System.out.println("    |--------|-------------|---------|---------------|---------------------------|------------------|--------------------------------|");
         boolean primeiraIteracao = true;
-        for (String[] arrayLinha : tabelaAtual) {
+        for (String[] arrayLinha : tabelaExibir) {
             if (!primeiraIteracao) {
-                System.out.format("| %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n", 
+                System.out.format("    | %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n", 
                                 arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             }
             primeiraIteracao = false;
         }
     }
     
-    private static ArrayList<String[]> gerarTabelinha() {
+    static ArrayList<String[]> gerarTabelinha() {
         ArrayList<String[]> listaFinal = new ArrayList<String[]>();
 
         try {
@@ -50,7 +52,10 @@ public class Admer {
         return listaFinal;
     }
 
-    private static void alterador(int coluna, String valorOriginal, String alteracao) {
+    private void alterador(int coluna, String valorOriginal, String alteracao) {
+        
+        ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelinha());
+
         try {
             // Alterar os Dados na Tabela
             for (String[] linhas : tabelaAtual) {
@@ -79,12 +84,25 @@ public class Admer {
         }
     }
     
-    private static void adicionar() {
+    static void adicionar() {
         try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
-            String linha = "1,101,true,Mathias,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com";
+            String linha = "1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com";
             buffEscritor.write(linha);
+            buffEscritor.newLine();
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    static void remover(int fullOrParcial, int coluna, String remocao) {
+        
+        try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+            String linha = "1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com";
+            buffEscritor.write(linha);
+            buffEscritor.newLine();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
