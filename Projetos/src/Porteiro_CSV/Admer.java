@@ -211,19 +211,15 @@ public class Admer {
     }
 
     private static boolean VerificarDuplicataApartamento(String andar, String apartamento) {
-        try {
-            FileReader ler = new FileReader(arquivo);
-            BufferedReader ledor = new BufferedReader(ler);
+        try (BufferedReader ledor = new BufferedReader(new FileReader(arquivo))) {
             String linha;
             String[] componentes;
             while ((linha = ledor.readLine()) != null) {
                 componentes = linha.split(",");
                 if (componentes[0].equals(andar) && componentes[1].equals(apartamento)) {
                     return false;
-                } 
+                }
             }
-            ler.close();
-            ledor.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
