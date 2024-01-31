@@ -20,6 +20,7 @@ public class Admer {
             }
             primeiraIteracao = false;
         }
+        System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------\n");
     }
     
     static ArrayList<String[]> gerarTabelinha() {
@@ -96,7 +97,7 @@ public class Admer {
         if(VerificarDuplicataApartamento(Andar, Apartamento){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
                 String linha;
-                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+","+Tel;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+","+Tel+"null";
                 buffEscritor.write(linha);
                 buffEscritor.newLine();
             } catch (Exception e) {
@@ -113,7 +114,7 @@ public class Admer {
         if(VerificarDuplicataApartamento(Andar, Apartamento)){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
                 String linha;
-                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+"null"+"null";
                 buffEscritor.write(linha);
                 buffEscritor.newLine();
             } catch (Exception e) {
@@ -130,7 +131,7 @@ public class Admer {
         if(VerificarDuplicataApartamento(Andar, Apartamento)){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
                 String linha;
-                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+"null"+"null"+"null";
                 buffEscritor.write(linha);
                 buffEscritor.newLine();
             } catch (Exception e) {
