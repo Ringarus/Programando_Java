@@ -7,18 +7,16 @@ import java.util.ArrayList;
 
 public class Admer {
     final static String arquivo = "C:\\Users\\Valério\\Documents\\Java_Project\\Programando_Java\\Projetos\\src\\Porteiro_CSV\\predio.txt";
-    //static ArrayList<String[]> tabelaOriginal = gerarTabelinha();
-    //static ArrayList<String[]> tabelaAtual = new ArrayList<>(tabelaOriginal);
 
     public static void exibirTabelaFormatada() {
         ArrayList<String[]> tabelaExibir = gerarTabelinha();
+        System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
-        System.out.println("    |--------|-------------|---------|---------------|---------------------------|------------------|--------------------------------|");
+        System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
         boolean primeiraIteracao = true;
         for (String[] arrayLinha : tabelaExibir) {
-            if (!primeiraIteracao) {
-                System.out.format("    | %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n", 
-                                arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
+            if (!primeiraIteracao && arrayLinha.length >= 7) {
+                System.out.format("    | %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             }
             primeiraIteracao = false;
         }
@@ -77,13 +75,71 @@ public class Admer {
         }
     }
     
-    static void adicionar() {
-        try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
-            String linha = "1,101,true,Pacco,Jefferson/Mae dele,21880900528,jeffinbotafogo@gmail.com";
-            buffEscritor.write(linha);
-            buffEscritor.newLine();
-        } catch (Exception e) {
-            e.printStackTrace();
+    static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores, String Tel, String Email) {
+        if(VerificarDuplicataApartamento(Andar, Apartamento)){
+            try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+                String linha;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+","+Tel+","+Email;
+                buffEscritor.write(linha);
+                buffEscritor.newLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 1;
+        } else {
+            System.out.println("Apartamento duplicado, por favor tente novamente");
+            return 0;
+        }
+    }
+
+    static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores, String Tel) {
+        if(VerificarDuplicataApartamento(Andar, Apartamento){
+            try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+                String linha;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+","+Tel;
+                buffEscritor.write(linha);
+                buffEscritor.newLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 1;
+        } else {
+            System.out.println("Apartamento duplicado, por favor tente novamente");
+            return 0;
+        }
+    }
+
+    static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores) {
+        if(VerificarDuplicataApartamento(Andar, Apartamento)){
+            try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+                String linha;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores;
+                buffEscritor.write(linha);
+                buffEscritor.newLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 1;
+        } else {
+            System.out.println("Apartamento duplicado, por favor tente novamente");
+            return 0;
+        }
+    }
+
+    static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario) {
+        if(VerificarDuplicataApartamento(Andar, Apartamento)){
+            try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
+                String linha;
+                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario;
+                buffEscritor.write(linha);
+                buffEscritor.newLine();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            return 1;
+        } else {
+            System.out.println("Apartamento duplicado, por favor tente novamente");
+            return 0;
         }
     }
     
@@ -151,6 +207,25 @@ public class Admer {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    private static boolean VerificarDuplicataApartamento(String andar, String apartamento) {
+        try {
+            FileReader ler = new FileReader(arquivo);
+            BufferedReader ledor = new BufferedReader(ler);
+            String linha;
+            String[] componentes;
+            while ((linha = ledor.readLine()) != null) {
+                componentes = linha.split(",");
+                if (componentes[0].equals(andar) && componentes[1].equals(apartamento)) {
+                    return false;
+                } 
+            }
+            ler.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
 }
