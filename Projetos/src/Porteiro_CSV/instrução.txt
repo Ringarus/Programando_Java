@@ -27,24 +27,27 @@ desenvolverá um programa que permite adicionar novos moradores á apartamentos 
 
 Funcionalidades: 
 
-- Editar os moradores de um dos apartamentos, seja esvaziando ou adicinando novos moradores.
-- Os apartamentos devem ser pesquisados pelo número do apartamento e andar, ou pelo nome do proprietário do 
+VISUALIZAR: FEITO
+- FEITO - Editar os moradores de um dos apartamentos, seja esvaziando ou adicinando novos moradores.
+- FEITO - Os apartamentos devem ser pesquisados pelo número do apartamento e andar, ou pelo nome do proprietário do 
 apartamento.
-- Deve ser possível mostrar todos os apartamentos pelo andar pesquisado.
-- Deve ser possível ordenar os apartamentos que não possuírem moradores, se houver, e os que possuírem 
+- FEITO - Deve ser possível mostrar todos os apartamentos pelo andar pesquisado.
+
+ORDENAR:
+- NÃO FEITO - Deve ser possível ordenar os apartamentos que não possuírem moradores, se houver, e os que possuírem 
 moradores.
-- Deve ser possível ordenar todos os apartamentos em ordem por andar e pelo número dos apartamentos, que 
+- NÃO FEITO - Deve ser possível ordenar todos os apartamentos em ordem por andar e pelo número dos apartamentos, que 
 junto a deles deve aparecer o nome do proprietário.
-- Em cada ordenação deve ser possível escolher um dentre os que aparecem para aparecer todas as informações 
+- NÃO FEITO - Em cada ordenação deve ser possível escolher um dentre os que aparecem para aparecer todas as informações 
 dos moradores e do apartamento.
 
 Detalhes extras: 
 
-- Gravar todos os eventos concluidos algum tipo de arquivo (ex: txt, csv, xsl)(leitura e escrita em arquivos).
-- Deve ser possível ir e voltar de todas as opções podendo percorrer e realmente utilizar o programa de 
+- FEITO - Gravar todos os eventos concluidos algum tipo de arquivo (ex: txt, csv, xsl)(leitura e escrita em arquivos).
+- NÃO FEITO - Deve ser possível ir e voltar de todas as opções podendo percorrer e realmente utilizar o programa de 
 forma prática.
-- As ordenações não tem um método específico, qualquer um que cumpra o que for pedido é válido.
-- O padrão é 5 apartamentos por andar, e o número de cada apartamento deve seguir o padrão: 101(1º Andar), 
+- FEITO - As ordenações não tem um método específico, qualquer um que cumpra o que for pedido é válido.
+- FEITO - O padrão é 5 apartamentos por andar, e o número de cada apartamento deve seguir o padrão: 101(1º Andar), 
 102(1º Andar), 201(2º Andar),  404 (4º Andar), etc.
 
 --------------------------------------------------------------------------------

@@ -5,11 +5,10 @@ import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 
-public class Admer {
-    final static String arquivo = "C:\\Users\\Valério\\Documents\\Java_Project\\Programando_Java\\Projetos\\src\\Porteiro_CSV\\predio.txt";
+public class Interno {
+    final static String arquivo = "C:\\Users\\valco\\Documents\\Programar\\Programando_Java\\Projetos\\src\\Porteiro_CSV\\predio.txt";
 
-    public static void exibirTabelaFormatada() {
-        ArrayList<String[]> tabelaExibir = gerarTabelinha();
+    public static void exibirTabelaFormatada(ArrayList<String[]> tabelaExibir) {
         System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
         System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
         System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
@@ -23,7 +22,7 @@ public class Admer {
         System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------\n");
     }
     
-    static ArrayList<String[]> gerarTabelinha() {
+    static ArrayList<String[]> gerarTabelaCompleta() {
         ArrayList<String[]> listaFinal = new ArrayList<String[]>();
 
         try {
@@ -41,6 +40,54 @@ public class Admer {
             e.printStackTrace();
         }
 
+        return listaFinal;
+    }
+
+    static ArrayList<String[]> pesquisar(String andar, String apartamento){
+        ArrayList<String[]> listaFinal = new ArrayList<String[]>();
+
+        try {
+            FileReader leitor = new FileReader(arquivo);
+            BufferedReader buffLeitor = new BufferedReader(leitor);
+            String linha;
+            boolean colunasBase = true;
+            while ((linha = buffLeitor.readLine()) != null) {
+                String[] arrayLinha = linha.split(",");
+                if (arrayLinha[0].equals(andar) && arrayLinha[1].equals(apartamento)) {
+                    listaFinal.add(arrayLinha);
+                } else if(colunasBase) {
+                    listaFinal.add(arrayLinha);
+                    colunasBase = false;
+                }
+            }
+            buffLeitor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return listaFinal;
+    }
+
+    static ArrayList<String[]> pesquisar(String andar){
+        ArrayList<String[]> listaFinal = new ArrayList<String[]>();
+
+        try {
+            FileReader leitor = new FileReader(arquivo);
+            BufferedReader buffLeitor = new BufferedReader(leitor);
+            String linha;
+            boolean colunasBase = true;
+            while ((linha = buffLeitor.readLine()) != null) {
+                String[] arrayLinha = linha.split(",");
+                if (arrayLinha[0].equals(andar)) {
+                    listaFinal.add(arrayLinha);
+                } else if(colunasBase) {
+                    listaFinal.add(arrayLinha);
+                    colunasBase = false;
+                }
+            }
+            buffLeitor.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         return listaFinal;
     }
 
