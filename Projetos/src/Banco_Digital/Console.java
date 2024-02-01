@@ -6,6 +6,7 @@ public class Console {
         //0 -> alterar dados
         //1 -> saque, deposito e transferencia
         Banking console = new Banking("banco.txt");
-        console.alterarArquivo("12345678912", 1, null);
+        console.escreverArquivo("Jose Mario", "11111111122", "75", "1945");
+        console.lerArquivo();
     }
 }

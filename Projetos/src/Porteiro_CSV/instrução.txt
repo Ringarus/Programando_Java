@@ -33,18 +33,18 @@ VISUALIZAR: FEITO
 apartamento.
 - FEITO - Deve ser possível mostrar todos os apartamentos pelo andar pesquisado.
 
-ORDENAR:
-- NÃO FEITO - Deve ser possível ordenar os apartamentos que não possuírem moradores, se houver, e os que possuírem 
+ORDENAR: FEITO
+- FEITO - Deve ser possível ordenar os apartamentos que não possuírem moradores, se houver, e os que possuírem 
 moradores.
-- NÃO FEITO - Deve ser possível ordenar todos os apartamentos em ordem por andar e pelo número dos apartamentos, que 
+- FEITO - Deve ser possível ordenar todos os apartamentos em ordem por andar e pelo número dos apartamentos, que 
 junto a deles deve aparecer o nome do proprietário.
-- NÃO FEITO - Em cada ordenação deve ser possível escolher um dentre os que aparecem para aparecer todas as informações 
+- FEITO - Em cada ordenação deve ser possível escolher um dentre os que aparecem para aparecer todas as informações 
 dos moradores e do apartamento.
 
-Detalhes extras: 
+Detalhes extras: FEITO
 
 - FEITO - Gravar todos os eventos concluidos algum tipo de arquivo (ex: txt, csv, xsl)(leitura e escrita em arquivos).
-- NÃO FEITO - Deve ser possível ir e voltar de todas as opções podendo percorrer e realmente utilizar o programa de 
+- FEITO - Deve ser possível ir e voltar de todas as opções podendo percorrer e realmente utilizar o programa de 
 forma prática.
 - FEITO - As ordenações não tem um método específico, qualquer um que cumpra o que for pedido é válido.
 - FEITO - O padrão é 5 apartamentos por andar, e o número de cada apartamento deve seguir o padrão: 101(1º Andar), 

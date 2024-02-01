@@ -1,7 +1,5 @@
 package Porteiro_CSV;
 
-import java.util.ArrayList;
-
 public class Porteiro {
 
     //COLUNAS : Andar,Apartamento,Ocupado,Proprietario,Moradores,TelContato,Email
@@ -11,9 +9,10 @@ public class Porteiro {
     public static void main(String[] args) {
         //Como não existia necessidade de orientação a objetos criei tudo estático
         //Admer.adicionar("5","501","true","Valerio","Valerio","21999999999","vhyst@gmail.com");
-        ArrayList<String[]> tabela = Interno.pesquisar("1","101");
-        Interno.exibirTabelaFormatada(tabela);
+        //Interno.adicionar("4","407","true","Jefferson","null","2013812983","null");
+        //Interno.exibirTabelaFormatada(tabela);  
+        //Interno.alterador(3, "Vitor", "Jefferson", false);
+        Interno.Ordenar(false);
     }
 
-    
 }
