@@ -93,7 +93,7 @@ public class Interno {
 
     static void alterador(int coluna, String valorOriginal, String alteracao) {
         
-        ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelinha());
+        ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
 
         try {
             // Alterar os Dados na Tabela
@@ -196,7 +196,7 @@ public class Interno {
         //2 -> Remover apenas o conteúdo da coluna
         //3 -> Remover a linha se o parâmetro fornecido for encontrado em qualquer coluna
         //4 -> Remover a coluna se o parâmetro fornecido for encontrado em qualquer coluna
-        ArrayList<String[]> tabelaAtual = gerarTabelinha();
+        ArrayList<String[]> tabelaAtual = gerarTabelaCompleta();
 
         try {
             // Escrever o Novo Conteúdo no Arquivo Temporário
