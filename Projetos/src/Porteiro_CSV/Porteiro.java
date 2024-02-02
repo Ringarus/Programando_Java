@@ -13,6 +13,7 @@ public class Porteiro {
         //Interno.exibirTabelaFormatada(tabela);  
         //Interno.alterador(3, "Vitor", "Jefferson", false);
         //Interno.Ordenar(false);
+        Interno.exibirTabelaFormatada(Interno.gerarTabelaCompleta());
     }
 
 }
