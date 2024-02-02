@@ -2,11 +2,11 @@ Andar,Apartamento,Ocupado,Proprietario,Moradores,TelContato,Email
 1,101,false,Mathias,null,21880900528,jeffinbotafogo@gmail.com
 1,102,false,Mathias,null,null,null
 2,201,false,Joao,null,21999999999,gigantedacolina1@gmail.com
-3,301,false,Joao,null,null,null
-4,401,false,Jefferson,null,null,null
-1,104,true,Joao,null,999,jeffinbotafogo@gmail.com
+3,301,true,Joao,jji,null,null
+4,401,true,Jefferson,koko,null,null
+1,104,true,Joao,Mateus,999,jeffinbotafogo@gmail.com
 1,105,false,Pacco,null,21880900528,jeffinbotafogo@gmail.com
 5,501,true,Valerio,Valerio,21999999999,vhyst@gmail.com
-4,407,true,Jefferson,null,2013812983,null
+4,407,false,Jefferson,null,2013812983,null
 3,307,false,Joao,null,null,null
 4,406,false,Joao,null,null,null

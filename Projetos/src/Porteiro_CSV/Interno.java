@@ -319,31 +319,34 @@ public class Interno {
 
     }
 
-    static void atualizarMoradores(){
+    static void atualizarMoradores() {
         ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
-
+    
         try {
             // Escrever o Novo Conteúdo no Arquivo Temporário
             File arquivoTemporario = new File("temporario.txt");
             FileWriter escritor = new FileWriter(arquivoTemporario);
             BufferedWriter buffEscritor = new BufferedWriter(escritor);
+    
+            Scanner scanner = new Scanner(System.in);
+    
             // Alterar os Dados na Tabela
             for (String[] linhas : tabelaAtual) {
                 if (linhas[2].contains("false")) {
                     linhas[4] = linhas[4].replace(linhas[4], "null");
                 } else if (linhas[2].contains("true") && linhas[4].equals("null")) {
-                    Scanner scanner = new Scanner(System.in);
-                    System.out.printf("Insira os moradores do apartamento %s separador por '/' : ",linhas[1]);
+                    System.out.printf("Insira os moradores do apartamento %s separador por '/' : ", linhas[1]);
                     String moradores = scanner.nextLine();
-                    scanner.close();
-                    if(moradores.contains(",")) {
+                    if (moradores.contains(",")) {
                         moradores.replace(",", "/");
                     }
-                    linhas[4]= moradores;
+                    linhas[4] = moradores;
                 }
                 buffEscritor.write(String.join(",", linhas));
                 buffEscritor.newLine();
             }
+    
+            scanner.close();
             buffEscritor.close();
     
             // Substituir o Arquivo Original pelo Novo Arquivo Temporário
@@ -352,25 +355,28 @@ public class Interno {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
-
-    static void atualizarOcupacao(){
+    
+    static void atualizarOcupacao() {
         ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
-
+    
         try {
             // Escrever o Novo Conteúdo no Arquivo Temporário
             File arquivoTemporario = new File("temporario.txt");
             FileWriter escritor = new FileWriter(arquivoTemporario);
             BufferedWriter buffEscritor = new BufferedWriter(escritor);
+    
             // Alterar os Dados na Tabela
             for (String[] linhas : tabelaAtual) {
                 if (linhas[4].contains("null")) {
                     linhas[2] = linhas[2].replace("true", "false");
+                } else if (linhas[2].contains("false") && !linhas[4].contains("null")) {
+                    linhas[2] = "true";
                 }
                 buffEscritor.write(String.join(",", linhas));
                 buffEscritor.newLine();
             }
+    
             buffEscritor.close();
     
             // Substituir o Arquivo Original pelo Novo Arquivo Temporário
@@ -379,7 +385,7 @@ public class Interno {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
+    
 
 }
