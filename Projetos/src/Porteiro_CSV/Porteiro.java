@@ -12,7 +12,7 @@ public class Porteiro {
         //Interno.adicionar("4","407","true","Jefferson","null","2013812983","null");
         //Interno.exibirTabelaFormatada(tabela);  
         //Interno.alterador(3, "Vitor", "Jefferson", false);
-        Interno.Ordenar(false);
+        //Interno.Ordenar(false);
     }
 
 }
