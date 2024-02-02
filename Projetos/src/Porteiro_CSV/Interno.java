@@ -13,11 +13,11 @@ public class Interno {
     private static void cabecalho(boolean apenasVazios){
         if (apenasVazios) {
             System.out.println("    --------------------------------------------------");
-            System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |");
+            System.out.println("    | Andar  | Apartamento |  Estado  | Proprietario  |");
             System.out.println("    --------------------------------------------------");
             } else{
             System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("    | Andar  | Apartamento | Ocupado | Proprietario  |        Moradores          |    TelContato    |            Email               |");
+            System.out.println("    | Andar  | Apartamento |  Estado  | Proprietario  |        Moradores          |    TelContato    |            Email               |");
             System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------"); 
         }
     }
@@ -26,11 +26,11 @@ public class Interno {
         cabecalho(mostrarApenasVazios);
         boolean primeiraIteracao = true;
         for (String[] arrayLinha : tabelaExibir) {
-            if ((mostrarApenasVazios && arrayLinha[2].equals("false"))&&(!primeiraIteracao && arrayLinha.length >= 7)) {
-                    System.out.format("    | %-6s | %-11s | %-7s | %-13s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3]);
+            if ((mostrarApenasVazios && arrayLinha[2].equals("Vazio"))&&(!primeiraIteracao && arrayLinha.length >= 7)) {
+                    System.out.format("    | %-6s | %-11s | %-11s | %-13s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3]);
             }
             else if ((!primeiraIteracao && arrayLinha.length >= 7) && !mostrarApenasVazios) {
-                System.out.format("    | %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
+                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             } 
             primeiraIteracao = false;
         }
@@ -46,7 +46,7 @@ public class Interno {
         boolean primeiraIteracao = true;
         for (String[] arrayLinha : tabelaExibir) {
             if (!primeiraIteracao && arrayLinha.length >= 7) {
-                System.out.format("    | %-6s | %-11s | %-7s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
+                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             } 
             primeiraIteracao = false;
         }
@@ -189,23 +189,6 @@ public class Interno {
         }
     }
 
-    static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores) {
-        if(VerificarDuplicataApartamento(Andar, Apartamento)){
-            try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
-                String linha;
-                linha = Andar+","+Apartamento+","+Ocupado+","+Proprietario+","+Moradores+"null"+"null";
-                buffEscritor.write(linha);
-                buffEscritor.newLine();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return 1;
-        } else {
-            System.out.println("Apartamento duplicado, por favor tente novamente");
-            return 0;
-        }
-    }
-
     static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario) {
         if(VerificarDuplicataApartamento(Andar, Apartamento)){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
@@ -224,10 +207,18 @@ public class Interno {
     }
     
     static void remover(int fullOrParcial, int coluna, String remocao, String parametro) {
-        //1 -> Remover o registro inteiro
-        //2 -> Remover apenas o conteúdo da coluna
-        //3 -> Remover a linha se o parâmetro fornecido for encontrado em qualquer coluna
-        //4 -> Remover a coluna se o parâmetro fornecido for encontrado em qualquer coluna
+        /*
+         * Esse método tem 4 argumentos 
+         * fullOrParcial = possui 4 modos apresentados abaixo.
+         * coluna = é a coluna que buscamos remover, indo de acordo com o index da coluna
+         * remocao = é a condição para removermos uma linha ou coluna
+         * parametro = é uma segunda condição, funcionando como um WHERE
+         */
+
+        //1 -> Remover o registro inteiro (GENERALISTA O REGISTRO INTEIRO)
+        //2 -> Remover apenas o conteúdo da coluna (GENERALISTA REMOVENDO APENAS COLUNA)
+        //3 -> Remover a linha se o parâmetro fornecido for encontrado em qualquer coluna (ESPECIFICO REMOVENDO LINHA)
+        //4 -> Remover a coluna se o parâmetro fornecido for encontrado em qualquer coluna (ESPECIFICO REMOVENDO COLUNA)
         ArrayList<String[]> tabelaAtual = gerarTabelaCompleta();
 
         try {
