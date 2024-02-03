@@ -297,6 +297,7 @@ public class Interno {
     }
 
     static void Ordenar(boolean ordenarPorApartamento){
+        //OrdenarPorApartamento - caso true vai colocar na ordem correta de
         if (ordenarPorApartamento) {
             ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
             tabelaAtual.sort(Comparator.comparing(array -> array[1]));

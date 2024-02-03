@@ -1,65 +1,78 @@
 package Porteiro_CSV;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Porteiro {
 
     public static void main(String[] args) {
         boolean endProcess = true;
+        int resposta;
+        String[] respostasMenuGeral = {"1","2","3","4","5","6","e"};
+        String[] respostasSubmenus = {"1","2","b"};
         do {
-
-            Scanner scanner = new Scanner(System.in);
-            //BUSCA UMA RESPOSTA DO USUARIO E CHECA SE É VALIDA
-            int resposta;
-            int[] possiveisRespostas = {1,2,3,4,5,6};
-            boolean respostaErrada = true;
-            
-            do {
-                //EXIBE O MENU
-                exibirMenu(1);
-                System.out.print("Sua opção: ");
-                resposta = scanner.nextInt();
-                if (!inteiroNoArray(possiveisRespostas, resposta)) {
-                System.out.println("Digite uma opção válida por favor\n\n");
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                limparTela();
-                } else{
-                respostaErrada = false;
-                scanner.close();
-                }
-            } while (respostaErrada);
-            
+            resposta = verificar(1, respostasMenuGeral);
+            if (resposta==-1) break;
+            int subResposta;
+            subResposta = verificar(resposta, respostasSubmenus);
             switch (resposta) {
+            case -1:
+                continue;
             case 1:
-                
+                if (subResposta==1) {
+                    Interno.Ordenar(true);
+                } else {
+                    Interno.exibirTabelaFormatada(Interno.gerarTabelaCompleta(),true);
+                }
                 break;
         
             case 2:
-
+                if (subResposta==1) {
+                    Scanner scan = new Scanner(System.in);           
+                    System.out.printf("Digite o número do andar: ");   
+                    resposta = scan.nextInt();   
+                    Interno.exibirTabelaFormatada(Interno.pesquisar(resposta));
+                    System.out.println("Digite E para sair ou insira outra letra para nova atividade: ");
+                    String exit = scan.nextLine();
+                    if (exit.equalsIgnoreCase("E")) {
+                        endProcess = false;
+                    }
+                    scan.close();
+                    
+                } else {
+                    Interno.exibirTabelaFormatada(Interno.gerarTabelaCompleta(),true);
+                }
                 break;
             case 3:
-
+                if (subResposta==1) {
+                    Interno.Ordenar(true);
+                } else {
+                    Interno.exibirTabelaFormatada(Interno.gerarTabelaCompleta(),true);
+                }
                 break;
             case 4:
-
+                verificar(resposta, respostasSubmenus);
                 break;
             case 5:
-
+                verificar(resposta, respostasSubmenus);
                 break;
             case 6:
-
+                verificar(resposta, respostasSubmenus);
                 break;  
             default:
                 break;
             }
+
         } while (endProcess);
 
     //
-
+        System.err.println("Obrigado por utilizar o sistema");
     }
 
     private static void exibirMenu(int tipoMenu) {
@@ -84,9 +97,8 @@ public class Porteiro {
             System.out.println("║                                      ║");
             System.out.println("║ Qual tipo de tabela gostaria de ver? ║");
             System.out.println("║                                      ║");
-            System.out.println("║ (1) Tabela completa sem ordenação    ║");
-            System.out.println("║ (2) Tabela completa ordenada         ║");
-            System.out.println("║ (3) Ver apenas apartamentos vazios   ║");
+            System.out.println("║ (1) Tabela completa ordenada         ║");
+            System.out.println("║ (2) Ver apenas apartamentos vazios   ║");
             System.out.println("║                                      ║");
             System.out.println("║═══════════╔══════════════════════════╝");
             System.out.println("║ (b)voltar ║");
@@ -162,9 +174,9 @@ public class Porteiro {
 
     }
 
-    private static boolean inteiroNoArray(int[] array, int valor) {
-        for (int elemento : array) {
-            if (elemento == valor) {
+    private static boolean estaNoArray(String[] array, String valor) {
+        for (String elemento : array) {
+            if (elemento.equals(valor)) {
                 return true; // Encontrou o valor no array
             }
         }
@@ -182,6 +194,174 @@ public class Porteiro {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    static void aguardar(long milissegundos) {
+        try {
+            Thread.sleep(milissegundos);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    static int verificar(int tipoDoMenu,String[] opcoes){
+        String resposta;
+        boolean respostaErrada = true;
+        do {
+            Scanner scanner = new Scanner(System.in);
+            exibirMenu(tipoDoMenu);
+            System.out.print("Sua opção: ");
+            resposta = scanner.nextLine();
+            if (resposta.equals("b") || resposta.equals("e")) {
+                scanner.close();
+                return -1;
+            }
+            if (!estaNoArray(opcoes, resposta)) {
+            System.out.println("Digite uma opção válida por favor\n\n");
+            aguardar(2000);
+            limparTela();
+            } else{
+            respostaErrada = false;
+            scanner.close();
+            }
+        } while (respostaErrada);
+        limparTela();
+        //Posso ter problemas aqui futuramente
+        return Integer.valueOf(resposta);
+    }
+
+    static int adicionarRegistro(){
+        Scanner scan = new Scanner(System.in);
+        Integer resposta;
+        boolean endOfProcess = false;
+        ArrayList<String[]> listaVerificar = Interno.gerarTabelaCompleta();
+
+        do {
+            Interno.exibirTabelaFormatada(Interno.gerarTabelaCompleta(),true);
+            System.out.println("POR FAVOR ESCOLHA O APARTAMENTO QUE DESEJA HABITAR:");
+            resposta = scan.nextInt();
+            for (String[] elementos : listaVerificar) {
+                if (elementos[1].equals(resposta.toString())){
+                    if (elementos[2].equalsIgnoreCase("Vazio")) {
+                        String[] novoRegistro = registrar();
+                        String proprietario = novoRegistro[0];
+                        String moradores = novoRegistro[1];
+                        String telefone = novoRegistro[2];
+                        String email = novoRegistro[3];
+
+
+                        endOfProcess = true;
+                    } else {
+                        System.out.println("Por favor insira um apartamento válido!");
+                        aguardar(1000);
+                        limparTela(); 
+                        break;
+                }
+                }
+            
+            }
+        } while (!endOfProcess);
+
+        scan.close();
+
+    }
+
+    private static void peqAlterar(){
+        ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
+
+        try {
+            // Escrever o Novo Conteúdo no Arquivo Temporário
+            File arquivoTemporario = new File("temporario.txt");
+            FileWriter escritor = new FileWriter(arquivoTemporario);
+            BufferedWriter buffEscritor = new BufferedWriter(escritor);
+            boolean trocaPendente = true;
+            // Alterar os Dados na Tabela
+            for (String[] linhas : tabelaAtual) {
+                if (linhas[coluna].contains(valorOriginal) && trocarTodasOcorrencias) {
+                    linhas[coluna] = linhas[coluna].replace(valorOriginal, alteracao);
+                } else if (linhas[coluna].contains(valorOriginal) && !trocarTodasOcorrencias) {
+                    if (trocaPendente) {
+                        linhas[coluna] = linhas[coluna].replace(valorOriginal, alteracao);
+                        trocaPendente = false;
+                    }
+                }
+                buffEscritor.write(String.join(",", linhas));
+                buffEscritor.newLine();
+            }
+            buffEscritor.close();
+    
+            // Substituir o Arquivo Original pelo Novo Arquivo Temporário
+            Files.move(arquivoTemporario.toPath(), Paths.get(arquivo), StandardCopyOption.REPLACE_EXISTING);
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Finalmente aprendi a adicionar uma descrição aos métodos
+     */
+    private static String[] registrar(){
+        Scanner scan = new Scanner(System.in);
+        String[] registro = {};
+        boolean verificado = false;
+        String resposta;
+        do {
+            System.out.print("Insira o nome do proprietário:");
+            resposta = scan.nextLine();
+            if (resposta.length()> 11) {
+                System.out.println("Por favor insira um nome de registro de até 11 caracteres");
+                aguardar(1000);
+                limparTela();
+            } else {
+                verificado = true;
+                registro[0] = resposta;
+            }
+        } while (!verificado);
+        verificado = false;
+        do {
+            System.out.print("Insira o nome dos moradores separados por '/': ");
+            resposta = scan.nextLine();
+            if (resposta.length()> 25) {
+                System.out.println("Por favor insira os nomes de registro de até 25 caracteres");
+                aguardar(1000);
+                limparTela();
+            } else {
+                verificado = true;
+                registro[1] = resposta;
+            }
+        } while (!verificado);
+        verificado = false;
+        do {
+            System.out.print("Insira o telefone de contato: ");
+            resposta = scan.nextLine();
+            if (resposta.length()> 15) {
+                System.out.println("Por favor insira um telefone de registro de até 15 caracteres");
+                aguardar(1000);
+                limparTela();
+            } else {
+                verificado = true;
+                registro[2] = resposta;
+            }
+        } while (!verificado);
+        verificado = false;
+        do {
+            System.out.print("Insira um email para contato: ");
+            resposta = scan.nextLine();
+            if (resposta.length()> 30) {
+                System.out.println("Por favor insira um email de registro de até 30 caracteres");
+                aguardar(1000);
+                limparTela();
+            } else {
+                verificado = true;
+                registro[3] = resposta;
+            }
+        } while (!verificado);
+        verificado = false;
+
+
+        scan.close();
+        return registro;
     }
 
 }
