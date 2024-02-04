@@ -10,69 +10,71 @@ import java.util.Scanner;
 public class Interno {
     final static String arquivo = "C:\\Users\\valco\\Documents\\Programar\\Programando_Java\\Projetos\\src\\Porteiro_CSV\\predio.txt";
     
-    private static void cabecalho(boolean apenasVazios){
-        if (apenasVazios) {
-            System.out.println("    --------------------------------------------------");
-            System.out.println("    | Andar  | Apartamento |  Estado  | Proprietario  |");
-            System.out.println("    --------------------------------------------------");
-            } else{
-            System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------");
-            System.out.println("    | Andar  | Apartamento |  Estado  | Proprietario  |        Moradores          |    TelContato    |            Email               |");
-            System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------"); 
-        }
-    }
-
+    
     public static void exibirTabelaFormatada(ArrayList<String[]> tabelaExibir, boolean mostrarApenasVazios) {
-        cabecalho(mostrarApenasVazios);
+        limparTela();
+        if (mostrarApenasVazios) {
+            System.out.println("    -------------------------------------------------------");
+            System.out.println("    | Andar  | Apartamento |   Estado    | Proprietario   |");
+            System.out.println("    -------------------------------------------------------");
+        } else {
+            System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------");
+            System.out.println("    | Andar  | Apartamento |   Estado    | Proprietario  |        Moradores          |    TelContato    |            Email               |");
+            System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------");
+        }
         boolean primeiraIteracao = true;
         for (String[] arrayLinha : tabelaExibir) {
-            if ((mostrarApenasVazios && arrayLinha[2].equals("Vazio"))&&(!primeiraIteracao && arrayLinha.length >= 7)) {
-                    System.out.format("    | %-6s | %-11s | %-11s | %-13s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3]);
-            }
-            else if ((!primeiraIteracao && arrayLinha.length >= 7) && !mostrarApenasVazios) {
-                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
+            if ((mostrarApenasVazios && arrayLinha[2].equals("Vazio")) && (!primeiraIteracao && arrayLinha.length >= 7)) {
+                System.out.format("    | %-6s | %-11s | %-11s | %-14s |\n", arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3]);
+            } else if ((!primeiraIteracao && arrayLinha.length >= 7) && !mostrarApenasVazios) {
+                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s  |\n", arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             } 
             primeiraIteracao = false;
         }
         if (mostrarApenasVazios) {
-            System.out.println("    --------------------------------------------------\n");
+            System.out.println("    -------------------------------------------------------\n");
         } else {
-            System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------\n");
+            System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------\n");
         }
+        System.out.flush();
     }
-
+    
     public static void exibirTabelaFormatada(ArrayList<String[]> tabelaExibir) {
-        cabecalho(false);
+        limparTela();
+        System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("    | Andar  | Apartamento |   Estado    | Proprietario  |        Moradores          |    TelContato    |            Email               |");
+        System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------");
         boolean primeiraIteracao = true;
         for (String[] arrayLinha : tabelaExibir) {
             if (!primeiraIteracao && arrayLinha.length >= 7) {
-                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s |\n",arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
+                System.out.format("    | %-6s | %-11s | %-11s | %-13s | %-25s | %-16s | %-30s |\n", arrayLinha[0], arrayLinha[1], arrayLinha[2], arrayLinha[3], arrayLinha[4], arrayLinha[5], arrayLinha[6]);
             } 
             primeiraIteracao = false;
         }
-            System.out.println("    ----------------------------------------------------------------------------------------------------------------------------------\n");
+        System.out.println("    --------------------------------------------------------------------------------------------------------------------------------------\n");
+        System.out.flush();
     }
     
     static ArrayList<String[]> gerarTabelaCompleta() {
-        ArrayList<String[]> listaFinal = new ArrayList<String[]>();
-
-        try {
-            FileReader leitor = new FileReader(arquivo);
-            BufferedReader buffLeitor = new BufferedReader(leitor);
+        ArrayList<String[]> listaFinal = new ArrayList<>();
+    
+        try (FileReader leitor = new FileReader(arquivo);
+             BufferedReader buffLeitor = new BufferedReader(leitor)) {
+    
             String linha;
-            
             while ((linha = buffLeitor.readLine()) != null) {
                 String[] arrayLinha = linha.split(",");
                 listaFinal.add(arrayLinha);
             }
-            
-            buffLeitor.close();
+    
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+    
+        System.out.flush();
         return listaFinal;
     }
+    
 
     static ArrayList<String[]> pesquisar(String apartamento){
         ArrayList<String[]> listaFinal = new ArrayList<String[]>();
@@ -134,13 +136,41 @@ public class Interno {
             boolean trocaPendente = true;
             // Alterar os Dados na Tabela
             for (String[] linhas : tabelaAtual) {
-                if (linhas[coluna].contains(valorOriginal) && trocarTodasOcorrencias) {
-                    linhas[coluna] = linhas[coluna].replace(valorOriginal, alteracao);
-                } else if (linhas[coluna].contains(valorOriginal) && !trocarTodasOcorrencias) {
-                    if (trocaPendente) {
+                    if (linhas[coluna].contains(valorOriginal) && trocarTodasOcorrencias) {
                         linhas[coluna] = linhas[coluna].replace(valorOriginal, alteracao);
-                        trocaPendente = false;
+                    } else if (linhas[coluna].contains(valorOriginal) && !trocarTodasOcorrencias) {
+                        if (trocaPendente) {
+                            linhas[coluna] = linhas[coluna].replace(valorOriginal, alteracao);
+                            trocaPendente = false;
+                        }
                     }
+                    buffEscritor.write(String.join(",", linhas));
+                    buffEscritor.newLine();
+            }
+            buffEscritor.close();
+    
+            // Substituir o Arquivo Original pelo Novo Arquivo Temporário
+            Files.move(arquivoTemporario.toPath(), Paths.get(arquivo), StandardCopyOption.REPLACE_EXISTING);
+    
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    static void alteradorParametro(int coluna, String alteracao, String parametroExtra) {
+        
+        ArrayList<String[]> tabelaAtual = new ArrayList<>(gerarTabelaCompleta());
+        boolean trocaPendente = true;
+        try {
+            // Escrever o Novo Conteúdo no Arquivo Temporário
+            File arquivoTemporario = new File("temporario.txt");
+            FileWriter escritor = new FileWriter(arquivoTemporario);
+            BufferedWriter buffEscritor = new BufferedWriter(escritor);
+            
+            // Alterar os Dados na Tabela
+            for (String[] linhas : tabelaAtual) {
+                if (linhas[1].contains(parametroExtra) && trocaPendente) {
+                        linhas[coluna] =alteracao;
                 }
                 buffEscritor.write(String.join(",", linhas));
                 buffEscritor.newLine();
@@ -155,6 +185,7 @@ public class Interno {
         }
     }
     
+
     static int adicionar(String Andar, String Apartamento, String Ocupado, String Proprietario, String Moradores, String Tel, String Email) {
         if(VerificarDuplicataApartamento(Andar, Apartamento)){
             try (BufferedWriter buffEscritor = new BufferedWriter(new FileWriter(arquivo, true))) {
@@ -379,5 +410,16 @@ public class Interno {
         }
     }
     
-
+    private static void limparTela() {
+        try {
+            if (System.getProperty("os.name").contains("Windows")) {
+                new ProcessBuilder("cmd", "/c", "cls").inheritIO().start().waitFor();
+            } else {
+                System.out.print("\033[H\033[2J");
+                System.out.flush();
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }
